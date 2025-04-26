@@ -1,6 +1,7 @@
 import { MdLightMode, MdOutlineLightMode } from "react-icons/md";
 import Navbar from "../Navbar/Navbar";
 import { FaCircleUser } from "react-icons/fa6";
+import moment from 'moment';
 
 const Header = () => {
   return (
@@ -12,7 +13,9 @@ const Header = () => {
         Journalism Without Fair Or Favour
       </p>
       <p className="text-base text-center mt-4 text-gray-500">
-        <span className="font-semibold text-black">Sunday</span> 2025
+      {
+        moment().format("dddd, MMMM D, YYYY, h:mm:ss a")
+      }
       </p>
       <p className="mt-4 py-3 bg-base-200 text-center font-semibold">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem cum
