@@ -1,7 +1,8 @@
 import { MdLightMode, MdOutlineLightMode } from "react-icons/md";
 import Navbar from "../Navbar/Navbar";
 import { FaCircleUser } from "react-icons/fa6";
-import moment from 'moment';
+import moment from "moment";
+import LatestNews from "../LatestNews/LatestNews";
 
 const Header = () => {
   return (
@@ -13,19 +14,17 @@ const Header = () => {
         Journalism Without Fair Or Favour
       </p>
       <p className="text-base text-center mt-4 text-gray-500">
-      {
-        moment().format("dddd, MMMM D, YYYY, h:mm:ss a")
-      }
+        {moment().format("dddd, MMMM D, YYYY, h:mm:ss a")}
       </p>
-      <p className="mt-4 py-3 bg-base-200 text-center font-semibold">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem cum
-        ullam facere, quasi sunt aspernatur!{" "}
-      </p>
+      <div className="flex justify-between items-center ">
+        <h4 className="bg-red-600 px-4 py-2 text-white rounded-sm text-center">
+          Latest
+        </h4>
+        <LatestNews></LatestNews>
+      </div>
       <div className=" flex justify-between items-center  mt-10 mb-10">
         <div className=" flex md:justify-end md:w-[60%]">
-            
-          
-          <Navbar ></Navbar>
+          <Navbar></Navbar>
         </div>
         <div className="flex  items-center justify-end gap-4 ">
           <p className="text-2xl">
