@@ -1,9 +1,30 @@
 import { FaCircleUser } from "react-icons/fa6";
 import Navbar from "../../Components/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 const Register = () => {
+
+  const {createUser}=useContext(AuthContext)
+  const handleRegister=e=>{
+    e.preventDefault()
+    const form=new FormData(e.currentTarget)
+    const name=form.get('name')
+    const photo=form.get('photo')
+    const email=form.get('email')
+    const password=form.get('password')
+    console.log(name,photo,email,password)
+    createUser(email,password)
+    .then(result=>{
+      console.log(result.user);
+    })
+    .catch(error=>{
+      console.log(error.message);
+    })
+  }
+
     return (
         <div>
       <div className=" flex justify-between items-center  mt-10 mb-10">
@@ -23,13 +44,14 @@ const Register = () => {
     </div>
     <div className="w-full md:w-[50%] mx-auto  p-10 shadow-md rounded-md mt-20 bg-base-100 ">
         <h3 className="text-lg font-bold text-center">Login Your Account</h3>
-        <form action="">
+        <form action="" onSubmit={handleRegister}>
           <div className="form-control w-full mt-5">
             <label className="label">
               <span className="label-text font-bold">Your Name</span>
             </label>
             <input
               type="text"
+              name="name"
               placeholder="Your Full Name"
               className="input input-bordered w-full "
             />
@@ -40,6 +62,7 @@ const Register = () => {
             </label>
             <input
               type="text"
+              name="photo"
               placeholder="Your Photo URL"
               className="input input-bordered w-full "
             />
@@ -50,6 +73,7 @@ const Register = () => {
             </label>
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
               className="input input-bordered w-full "
             />
@@ -60,6 +84,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="Your Password"
               className="input input-bordered w-full "
             />

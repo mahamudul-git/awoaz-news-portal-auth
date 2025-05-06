@@ -4,8 +4,23 @@ import { FaCircleUser } from "react-icons/fa6";
 import moment from "moment";
 import LatestNews from "../LatestNews/LatestNews";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
+
+  const {user,logOut}=useContext(AuthContext)
+
+  const handleLogOut=()=>{
+    logOut()
+    .then(()=>{
+      console.log('log out successfully');
+    })
+    .catch(error=>{
+      console.log(error.message);
+    })
+  }
+
   return (
     <div>
       <h1 className="text-5xl text-center font-Playfair font-bold mt-10">
@@ -31,9 +46,14 @@ const Header = () => {
           <p className="text-2xl">
             <FaCircleUser />
           </p>
-          <Link to="/login">
+          {
+            user? 
+            <button onClick={handleLogOut} className="bg-gray-700 py-2 px-6 text-white">LogOut</button>
+            :<Link to="/login">
             <button className="bg-gray-700 py-2 px-6 text-white">Login</button>
           </Link>
+         
+          }
         </div>
       </div>
     </div>
