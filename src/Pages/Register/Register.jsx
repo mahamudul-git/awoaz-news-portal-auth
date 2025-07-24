@@ -1,13 +1,14 @@
 import { FaCircleUser } from "react-icons/fa6";
 import Navbar from "../../Components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 
 const Register = () => {
 
-  const {createUser}=useContext(AuthContext)
+  const navigate=useNavigate()
+  const {createUser,logOut}=useContext(AuthContext)
   const handleRegister=e=>{
     e.preventDefault()
     const form=new FormData(e.currentTarget)
@@ -19,6 +20,8 @@ const Register = () => {
     createUser(email,password)
     .then(result=>{
       console.log(result.user);
+      logOut()
+      navigate('/login')
     })
     .catch(error=>{
       console.log(error.message);
